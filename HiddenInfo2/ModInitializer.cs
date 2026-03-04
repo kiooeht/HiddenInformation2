@@ -46,7 +46,17 @@ public static class ModInitializer {
 
     private static void ReadConfig(string configPath) {
         using var json = new FileAccessStream(configPath, FileAccess.ModeFlags.Read);
-        var config = JsonSerializer.Deserialize<Config>(json);
-        Config = config ?? throw new InvalidOperationException("Hidden Info 2 config was null");
+        try {
+            var config = JsonSerializer.Deserialize<Config>(json);
+            if (config == null) {
+                Log.Error("Hidden Info 2 config was null");
+                return;
+            }
+
+            Config = config;
+        }
+        catch (Exception e) {
+            Log.Error($"Failed to deserialize Hidden Info 2 config: {e.Message}");
+        }
     }
 }
