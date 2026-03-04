@@ -18,8 +18,8 @@ static class HideCardInfo {
             return;
         }
         
-        __instance._titleLabel.Visible = false;
-        __instance._descriptionLabel.Visible = false;
+        __instance._titleLabel.Visible = !ModInitializer.Config.CardNames;
+        __instance._descriptionLabel.Visible = !ModInitializer.Config.CardDescriptions;
         __instance._typeLabel.Visible = false;
         __instance._energyLabel.Visible = false;
         __instance._starLabel.Visible = false;
