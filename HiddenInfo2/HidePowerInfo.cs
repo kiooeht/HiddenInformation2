@@ -2,6 +2,7 @@
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
 
 namespace HiddenInfo2;
@@ -47,6 +48,14 @@ static class HidePowerInfo {
     static void HideNamePowerRemovedVfx(NPowerRemovedVfx __instance) {
         if (ModInitializer.Config.PowerName) {
             __instance._powerField.SetTextAutoSize("???");
+        }
+    }
+
+    [HarmonyPatch(typeof(NPower), nameof(NPower.RefreshAmount))]
+    [HarmonyPostfix]
+    static void HidePowerAmount(NPower __instance) {
+        if (ModInitializer.Config.PowerAmount) {
+            __instance._amountLabel.SetTextAutoSize(string.Empty);
         }
     }
 }

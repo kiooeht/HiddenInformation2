@@ -46,6 +46,9 @@ public class Config {
     [JsonPropertyName("power.type")]
     public bool PowerType { get; set; }
     
+    [JsonPropertyName("power.amount")]
+    public bool PowerAmount { get; set; }
+    
     // Events
     [JsonPropertyName("event.option_effect")]
     public bool EventOptionEffect { get; set; }
