@@ -53,19 +53,21 @@ static class HideCardInfo {
     [HarmonyPatch(typeof(NCardHolder), nameof(NCardHolder.CreateHoverTips))]
     [HarmonyPrefix]
     static bool HideTooltips() {
-        return false;
+        return !ModInitializer.Config.CardDescriptions;
     }
 
     [HarmonyPatch(typeof(NPreviewCardHolder), nameof(NCardHolder.CreateHoverTips))]
     [HarmonyPrefix]
     static bool HidePreviewTooltips() {
-        return false;
+        return !ModInitializer.Config.CardDescriptions;
     }
     
     [HarmonyPatch(typeof(NInspectCardScreen), nameof(NInspectCardScreen.UpdateCardDisplay))]
     [HarmonyPostfix]
     static void HideInspectTooltips(NInspectCardScreen __instance) {
-        NHoverTipSet.Clear();
+        if (ModInitializer.Config.CardDescriptions) {
+            NHoverTipSet.Clear();
+        }
     }
 
     [HarmonyPatch(typeof(CardModel), nameof(CardModel.BannerMaterialPath), MethodType.Getter)]
