@@ -105,7 +105,6 @@ static class HideCardInfo {
 
     [HarmonyPatch(typeof(CardModel), nameof(CardModel.FramePath), MethodType.Getter)]
     [HarmonyTranspiler]
-    [HarmonyDebug]
     static IEnumerable<CodeInstruction> HideTypeFrame(IEnumerable<CodeInstruction> instructions) {
         return HideType("Failed to find card frame string", instructions);
     }
