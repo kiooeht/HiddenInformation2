@@ -35,4 +35,14 @@ public class Config {
 
     [JsonPropertyName("potion.description")]
     public bool PotionDescription { get; set; }
+    
+    // Powers
+    [JsonPropertyName("power.name")]
+    public bool PowerName { get; set; }
+    
+    [JsonPropertyName("power.description")]
+    public bool PowerDescription { get; set; }
+    
+    [JsonPropertyName("power.type")]
+    public bool PowerType { get; set; }
 }
