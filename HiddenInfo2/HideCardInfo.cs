@@ -18,11 +18,11 @@ static class HideCardInfo {
             return;
         }
         
-        __instance._titleLabel.Visible = !ModInitializer.Config.CardNames;
-        __instance._descriptionLabel.Visible = !ModInitializer.Config.CardDescriptions;
+        __instance._titleLabel.Visible = !ModInitializer.Config.CardName;
+        __instance._descriptionLabel.Visible = !ModInitializer.Config.CardDescription;
         __instance._typeLabel.Visible = false;
-        __instance._energyLabel.Visible = !ModInitializer.Config.CardCosts;
-        __instance._starLabel.Visible = !ModInitializer.Config.CardCosts;
+        __instance._energyLabel.Visible = !ModInitializer.Config.CardCost;
+        __instance._starLabel.Visible = !ModInitializer.Config.CardCost;
 
         var flag = __instance.Model.Rarity == CardRarity.Ancient;
         __instance._typePlaque.Visible = !flag;
@@ -53,19 +53,19 @@ static class HideCardInfo {
     [HarmonyPatch(typeof(NCardHolder), nameof(NCardHolder.CreateHoverTips))]
     [HarmonyPrefix]
     static bool HideTooltips() {
-        return !ModInitializer.Config.CardDescriptions;
+        return !ModInitializer.Config.CardDescription;
     }
 
     [HarmonyPatch(typeof(NPreviewCardHolder), nameof(NCardHolder.CreateHoverTips))]
     [HarmonyPrefix]
     static bool HidePreviewTooltips() {
-        return !ModInitializer.Config.CardDescriptions;
+        return !ModInitializer.Config.CardDescription;
     }
     
     [HarmonyPatch(typeof(NInspectCardScreen), nameof(NInspectCardScreen.UpdateCardDisplay))]
     [HarmonyPostfix]
     static void HideInspectTooltips(NInspectCardScreen __instance) {
-        if (ModInitializer.Config.CardDescriptions) {
+        if (ModInitializer.Config.CardDescription) {
             NHoverTipSet.Clear();
         }
     }

@@ -4,14 +4,14 @@ namespace HiddenInfo2;
 
 public class Config {
     // Cards
-    [JsonPropertyName("card.names")]
-    public bool CardNames { get; set; }
+    [JsonPropertyName("card.name")]
+    public bool CardName { get; set; }
 
-    [JsonPropertyName("card.descriptions")]
-    public bool CardDescriptions { get; set; }
+    [JsonPropertyName("card.description")]
+    public bool CardDescription { get; set; }
     
-    [JsonPropertyName("card.costs")]
-    public bool CardCosts { get; set; }
+    [JsonPropertyName("card.cost")]
+    public bool CardCost { get; set; }
     
     [JsonPropertyName("card.rarity")]
     public bool CardRarity { get; set; }
@@ -20,19 +20,19 @@ public class Config {
     public bool CardType { get; set; }
 
     // Relics
-    [JsonPropertyName("relic.names")]
-    public bool RelicNames { get; set; }
+    [JsonPropertyName("relic.name")]
+    public bool RelicName { get; set; }
 
-    [JsonPropertyName("relic.descriptions")]
-    public bool RelicDescriptions { get; set; }
+    [JsonPropertyName("relic.description")]
+    public bool RelicDescription { get; set; }
 
     [JsonPropertyName("relic.flavor")]
     public bool RelicFlavor { get; set; }
 
     // Potions
-    [JsonPropertyName("potion.names")]
-    public bool PotionNames { get; set; }
+    [JsonPropertyName("potion.name")]
+    public bool PotionName { get; set; }
 
-    [JsonPropertyName("potion.descriptions")]
-    public bool PotionDescriptions { get; set; }
+    [JsonPropertyName("potion.description")]
+    public bool PotionDescription { get; set; }
 }

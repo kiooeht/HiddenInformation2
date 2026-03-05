@@ -11,11 +11,11 @@ static class HideRelicInfo {
     [HarmonyPatch(typeof(RelicModel), nameof(RelicModel.HoverTip), MethodType.Getter)]
     [HarmonyPostfix]
     static void HideTitleDescription(RelicModel __instance, ref HoverTip __result) {
-        if (ModInitializer.Config.RelicNames) {
+        if (ModInitializer.Config.RelicName) {
             __result.Title = "";
         }
 
-        if (ModInitializer.Config.RelicDescriptions) {
+        if (ModInitializer.Config.RelicDescription) {
             __result.Description = "";
         }
     }
@@ -23,7 +23,7 @@ static class HideRelicInfo {
     [HarmonyPatch(typeof(RelicModel), nameof(RelicModel.HoverTips), MethodType.Getter)]
     [HarmonyPrefix]
     static bool HideExtraTooltips(RelicModel __instance, ref IEnumerable<IHoverTip> __result) {
-        if (ModInitializer.Config.RelicDescriptions) {
+        if (ModInitializer.Config.RelicDescription) {
             __result = [__instance.HoverTip];
             return false;
         }
@@ -34,10 +34,10 @@ static class HideRelicInfo {
     [HarmonyPatch(typeof(NInspectRelicScreen), nameof(NInspectRelicScreen.UpdateRelicDisplay))]
     [HarmonyPostfix]
     static void HideInspect(NInspectRelicScreen __instance) {
-        __instance._nameLabel.Visible = !ModInitializer.Config.RelicNames;
-        __instance._description.Visible = !ModInitializer.Config.RelicDescriptions;
+        __instance._nameLabel.Visible = !ModInitializer.Config.RelicName;
+        __instance._description.Visible = !ModInitializer.Config.RelicDescription;
         __instance._flavor.Visible = !ModInitializer.Config.RelicFlavor;
-        if (ModInitializer.Config.RelicDescriptions) {
+        if (ModInitializer.Config.RelicDescription) {
             NHoverTipSet.Clear();
         }
     }
