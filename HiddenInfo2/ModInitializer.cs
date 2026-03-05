@@ -18,7 +18,7 @@ public static class ModInitializer {
         private set => _config = value;
     }
 
-    private static FileSystemWatcher _watcher = new FileSystemWatcher();
+    private static FileSystemWatcher _watcher = new();
     
     public static void InitializeMod() {
         new Harmony("kiooeht.HiddenInfo2").PatchAll();
@@ -42,6 +42,8 @@ public static class ModInitializer {
             }
         };
         _watcher.EnableRaisingEvents = true;
+
+        ModManager.OnModDetected -= OnModDetected;
     }
 
     private static void ReadConfig(string configPath) {
