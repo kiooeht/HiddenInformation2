@@ -24,11 +24,13 @@ static class HideCardInfo {
         __instance._energyLabel.Visible = !ModInitializer.Config.CardCost;
         __instance._starLabel.Visible = !ModInitializer.Config.CardCost;
 
-        var flag = __instance.Model.Rarity == CardRarity.Ancient;
-        __instance._typePlaque.Visible = !flag;
-        if (flag) {
-            __instance._ancientBanner.Visible = false;
-            __instance._ancientTextBg.Visible = false;
+        if (__instance.Model.Rarity == CardRarity.Ancient) {
+            __instance._ancientBanner.Visible = !ModInitializer.Config.CardName;
+            __instance._ancientTextBg.Visible = !ModInitializer.Config.CardDescription;
+            __instance._typePlaque.Visible = !ModInitializer.Config.CardType;
+        }
+        else {
+            __instance._typePlaque.Visible = true;
         }
     }
     
@@ -107,6 +109,12 @@ static class HideCardInfo {
     [HarmonyTranspiler]
     static IEnumerable<CodeInstruction> HideTypeFrame(IEnumerable<CodeInstruction> instructions) {
         return HideType("Failed to find card frame string", instructions);
+    }
+
+    [HarmonyPatch(typeof(CardModel), nameof(CardModel.AncientTextBgPath), MethodType.Getter)]
+    [HarmonyTranspiler]
+    static IEnumerable<CodeInstruction> HideTypeAncientTextBg(IEnumerable<CodeInstruction> instructions) {
+        return HideType("Failed to find card ancient text bg string", instructions);
     }
     
     private static IEnumerable<CodeInstruction> HideType(string errorMsg, IEnumerable<CodeInstruction> instructions) {
