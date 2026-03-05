@@ -20,7 +20,7 @@ static class HideCardInfo {
         
         __instance._titleLabel.Visible = !ModInitializer.Config.CardName;
         __instance._descriptionLabel.Visible = !ModInitializer.Config.CardDescription;
-        __instance._typeLabel.Visible = false;
+        __instance._typeLabel.Visible = !ModInitializer.Config.CardType;
         __instance._energyLabel.Visible = !ModInitializer.Config.CardCost;
         __instance._starLabel.Visible = !ModInitializer.Config.CardCost;
 
