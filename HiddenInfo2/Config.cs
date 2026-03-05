@@ -54,6 +54,9 @@ public class Config {
     public bool EventOptionEffect { get; set; }
     
     // Player
+    [JsonPropertyName("player.energy")]
+    public bool PlayerEnergy { get; set; }
+    
     [JsonPropertyName("player.hp")]
     public bool PlayerHp { get; set; }
     
