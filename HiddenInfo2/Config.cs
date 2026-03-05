@@ -18,6 +18,9 @@ public class Config {
     [JsonPropertyName("relic.descriptions")]
     public bool RelicDescriptions { get; set; }
 
+    [JsonPropertyName("relic.flavor")]
+    public bool RelicFlavor { get; set; }
+
     [JsonPropertyName("potion.names")]
     public bool PotionNames { get; set; }
 

@@ -34,14 +34,10 @@ static class HideRelicInfo {
     [HarmonyPatch(typeof(NInspectRelicScreen), nameof(NInspectRelicScreen.UpdateRelicDisplay))]
     [HarmonyPostfix]
     static void HideInspect(NInspectRelicScreen __instance) {
-        var hideNames = ModInitializer.Config.RelicNames;
-        var hideDescriptions = ModInitializer.Config.RelicDescriptions;
-
-        __instance._nameLabel.Visible = !hideNames;
-        
-        __instance._description.Visible = !hideDescriptions;
-        __instance._flavor.Visible = !hideDescriptions;
-        if (hideDescriptions) {
+        __instance._nameLabel.Visible = !ModInitializer.Config.RelicNames;
+        __instance._description.Visible = !ModInitializer.Config.RelicDescriptions;
+        __instance._flavor.Visible = !ModInitializer.Config.RelicFlavor;
+        if (ModInitializer.Config.RelicDescriptions) {
             NHoverTipSet.Clear();
         }
     }
