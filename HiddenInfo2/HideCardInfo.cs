@@ -21,8 +21,8 @@ static class HideCardInfo {
         __instance._titleLabel.Visible = !ModInitializer.Config.CardNames;
         __instance._descriptionLabel.Visible = !ModInitializer.Config.CardDescriptions;
         __instance._typeLabel.Visible = false;
-        __instance._energyLabel.Visible = false;
-        __instance._starLabel.Visible = false;
+        __instance._energyLabel.Visible = !ModInitializer.Config.CardCosts;
+        __instance._starLabel.Visible = !ModInitializer.Config.CardCosts;
 
         var flag = __instance.Model.Rarity == CardRarity.Ancient;
         __instance._typePlaque.Visible = !flag;
