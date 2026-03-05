@@ -9,14 +9,23 @@ static class HidePotionInfo {
     [HarmonyPatch(typeof(PotionModel), nameof(PotionModel.HoverTip), MethodType.Getter)]
     [HarmonyPostfix]
     static void HideTitleDescription(PotionModel __instance, ref HoverTip __result) {
-        // __result.Title = "";
-        __result.Description = "";
+        if (ModInitializer.Config.PotionNames) {
+            __result.Title = "";
+        }
+
+        if (ModInitializer.Config.PotionDescriptions) {
+            __result.Description = "";
+        }
     }
     
     [HarmonyPatch(typeof(PotionModel), nameof(PotionModel.HoverTips), MethodType.Getter)]
     [HarmonyPrefix]
     static bool HideExtraTooltips(PotionModel __instance, ref IEnumerable<IHoverTip> __result) {
-        __result = [__instance.HoverTip];
-        return false;
+        if (ModInitializer.Config.PotionDescriptions) {
+            __result = [__instance.HoverTip];
+            return false;
+        }
+
+        return true;
     }
 }
