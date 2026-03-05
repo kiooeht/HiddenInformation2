@@ -33,7 +33,7 @@ public static class ModInitializer {
         Log.Info(configPath);
         ReadConfig(configPath);
 
-        _watcher.Path = Path.GetDirectoryName(configPath);
+        _watcher.Path = Path.GetDirectoryName(configPath)!;
         _watcher.Filter = Path.GetFileName(configPath);
         _watcher.NotifyFilter = NotifyFilters.LastWrite;
         _watcher.Changed += (sender, args) => {
