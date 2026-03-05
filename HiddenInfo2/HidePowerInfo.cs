@@ -33,6 +33,11 @@ static class HidePowerInfo {
                 __result = hoverTips;
             }
         }
+
+        if (hoverTips.Count > 1 && ModInitializer.Config.PowerDescription) {
+            hoverTips.RemoveRange(1, hoverTips.Count - 1);
+            __result = hoverTips;
+        }
     }
 
     [HarmonyPatch(typeof(NPowerAppliedVfx), nameof(NPowerAppliedVfx.StartVfx))]
