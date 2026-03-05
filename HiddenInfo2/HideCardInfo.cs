@@ -105,6 +105,7 @@ static class HideCardInfo {
 
     [HarmonyPatch(typeof(CardModel), nameof(CardModel.FramePath), MethodType.Getter)]
     [HarmonyTranspiler]
+    [HarmonyDebug]
     static IEnumerable<CodeInstruction> HideTypeFrame(IEnumerable<CodeInstruction> instructions) {
         return HideType("Failed to find card frame string", instructions);
     }
@@ -126,10 +127,19 @@ static class HideCardInfo {
             )
             .ThrowIfInvalid(errorMsg)
             .InsertAndAdvance(
-                new CodeInstruction(OpCodes.Ldc_I4_2), // CardType.SKILL
+                CodeInstruction.LoadLocal(index),
+                CodeInstruction.Call<CardType, CardType>(type => GetHiddenType(type)),
                 CodeInstruction.StoreLocal(index)
             );
         
         return codeMatcher.Instructions();
+    }
+
+    private static CardType GetHiddenType(CardType original) {
+        if (ModInitializer.Config.CardType) {
+            return CardType.Skill;
+        }
+
+        return original;
     }
 }

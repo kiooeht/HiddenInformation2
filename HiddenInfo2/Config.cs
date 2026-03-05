@@ -15,6 +15,9 @@ public class Config {
     
     [JsonPropertyName("card.rarity")]
     public bool CardRarity { get; set; }
+    
+    [JsonPropertyName("card.type")]
+    public bool CardType { get; set; }
 
     // Relics
     [JsonPropertyName("relic.names")]
