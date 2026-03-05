@@ -5,7 +5,7 @@ using MegaCrit.Sts2.Core.Nodes.HoverTips;
 using MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect;
 using MegaCrit.Sts2.Core.Nodes.Screens.InspectScreens;
 
-namespace HiddenInfo2;
+namespace HiddenInfo2.Patches;
 
 [HarmonyPatch]
 static class HideRelicInfo {

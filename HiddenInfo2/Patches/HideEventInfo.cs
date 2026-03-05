@@ -4,7 +4,7 @@ using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Nodes.Events;
 using MegaCrit.Sts2.Core.Nodes.HoverTips;
 
-namespace HiddenInfo2;
+namespace HiddenInfo2.Patches;
 
 [HarmonyPatch]
 static class HideEventInfo {

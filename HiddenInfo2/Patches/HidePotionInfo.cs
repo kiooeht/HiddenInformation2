@@ -2,7 +2,7 @@
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 
-namespace HiddenInfo2;
+namespace HiddenInfo2.Patches;
 
 [HarmonyPatch]
 static class HidePotionInfo {

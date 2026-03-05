@@ -4,7 +4,7 @@ using MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect;
 using MegaCrit.Sts2.Core.Nodes.Screens.MainMenu;
 using MegaCrit.sts2.Core.Nodes.TopBar;
 
-namespace HiddenInfo2;
+namespace HiddenInfo2.Patches;
 
 [HarmonyPatch]
 static class HideHpInfo {

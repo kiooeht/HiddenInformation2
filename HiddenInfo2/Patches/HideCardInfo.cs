@@ -7,7 +7,7 @@ using MegaCrit.Sts2.Core.Nodes.Cards.Holders;
 using MegaCrit.Sts2.Core.Nodes.HoverTips;
 using MegaCrit.Sts2.Core.Nodes.Screens;
 
-namespace HiddenInfo2;
+namespace HiddenInfo2.Patches;
 
 [HarmonyPatch]
 static class HideCardInfo {

@@ -1,7 +1,7 @@
 ﻿using HarmonyLib;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 
-namespace HiddenInfo2;
+namespace HiddenInfo2.Patches;
 
 [HarmonyPatch(typeof(NEnergyCounter), nameof(NEnergyCounter.RefreshLabel))]
 static class HideEnergyInfo {
