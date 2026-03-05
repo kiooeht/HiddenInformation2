@@ -76,17 +76,25 @@ static class HideCardInfo {
         var codeMatcher = new CodeMatcher(instructions);
         
         codeMatcher
-            .MatchStartForward(
+            .MatchEndForward(
                 new CodeMatch(OpCodes.Ldarg_0),
-                CodeMatch.Calls(typeof(CardModel).Property("Rarity").GetMethod)
+                CodeMatch.Calls(typeof(CardModel).Property("Rarity").GetMethod),
+                CodeMatch.StoresLocal()
             )
             .ThrowIfInvalid("Failed to find get_Rarity")
-            .RemoveInstructions(2)
             .InsertAndAdvance(
-                new CodeInstruction(OpCodes.Ldc_I4_2) // CardRarity.COMMON
+                CodeInstruction.Call<CardRarity, CardRarity>(rarity => GetHiddenRarity(rarity))
             );
         
         return codeMatcher.Instructions();
+    }
+
+    private static CardRarity GetHiddenRarity(CardRarity original) {
+        if (ModInitializer.Config.CardRarity) {
+            return CardRarity.Common;
+        }
+
+        return original;
     }
 
     [HarmonyPatch(typeof(CardModel), nameof(CardModel.PortraitBorderPath), MethodType.Getter)]
