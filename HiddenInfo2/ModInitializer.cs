@@ -29,7 +29,7 @@ public static class ModInitializer {
         if (mod.pckName != "HiddenInfo2") return;
         if (mod.assembly == null) return;
 
-        var configPath = Path.Combine(Path.GetDirectoryName(mod.assembly.Location)!, "config.json");
+        var configPath = Path.Combine(Path.GetDirectoryName(mod.assembly.Location)!, "HiddenInfo2_config.json");
         Log.Info(configPath);
         ReadConfig(configPath);
 
