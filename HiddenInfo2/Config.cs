@@ -3,6 +3,7 @@
 namespace HiddenInfo2;
 
 public class Config {
+    // Cards
     [JsonPropertyName("card.names")]
     public bool CardNames { get; set; }
 
@@ -12,6 +13,7 @@ public class Config {
     [JsonPropertyName("card.costs")]
     public bool CardCosts { get; set; }
 
+    // Relics
     [JsonPropertyName("relic.names")]
     public bool RelicNames { get; set; }
 
@@ -21,6 +23,7 @@ public class Config {
     [JsonPropertyName("relic.flavor")]
     public bool RelicFlavor { get; set; }
 
+    // Potions
     [JsonPropertyName("potion.names")]
     public bool PotionNames { get; set; }
 
