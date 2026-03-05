@@ -2,6 +2,7 @@
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
 
 namespace HiddenInfo2;
 
@@ -30,6 +31,22 @@ static class HidePowerInfo {
                 hoverTips[0] = tip;
                 __result = hoverTips;
             }
+        }
+    }
+
+    [HarmonyPatch(typeof(NPowerAppliedVfx), nameof(NPowerAppliedVfx.StartVfx))]
+    [HarmonyPostfix]
+    static void HideNamePowerAppliedVfx(NPowerAppliedVfx __instance) {
+        if (ModInitializer.Config.PowerName) {
+            __instance._powerField.SetTextAutoSize("???");
+        }
+    }
+
+    [HarmonyPatch(typeof(NPowerRemovedVfx), nameof(NPowerRemovedVfx.StartVfx))]
+    [HarmonyPostfix]
+    static void HideNamePowerRemovedVfx(NPowerRemovedVfx __instance) {
+        if (ModInitializer.Config.PowerName) {
+            __instance._powerField.SetTextAutoSize("???");
         }
     }
 }
