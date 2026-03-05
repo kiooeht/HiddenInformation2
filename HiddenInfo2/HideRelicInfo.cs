@@ -2,6 +2,7 @@
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.HoverTips;
+using MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect;
 using MegaCrit.Sts2.Core.Nodes.Screens.InspectScreens;
 
 namespace HiddenInfo2;
@@ -40,5 +41,12 @@ static class HideRelicInfo {
         if (ModInitializer.Config.RelicDescription) {
             NHoverTipSet.Clear();
         }
+    }
+
+    [HarmonyPatch(typeof(NCharacterSelectScreen), nameof(NCharacterSelectScreen.SelectCharacter))]
+    [HarmonyPostfix]
+    static void HideCharacterSelect(NCharacterSelectScreen __instance) {
+        __instance._relicTitle.Visible = !ModInitializer.Config.RelicName;
+        __instance._relicDescription.Visible = !ModInitializer.Config.RelicDescription;
     }
 }
