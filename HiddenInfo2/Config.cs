@@ -59,4 +59,8 @@ public class Config {
     
     [JsonPropertyName("player.block")]
     public bool PlayerBlock { get; set; }
+    
+    // Enemy
+    [JsonPropertyName("enemy.hp")]
+    public bool EnemyHp { get; set; }
 }

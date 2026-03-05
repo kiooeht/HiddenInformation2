@@ -19,8 +19,13 @@ static class HideHpInfo {
     [HarmonyPatch(typeof(NHealthBar), nameof(NHealthBar.RefreshText))]
     [HarmonyPostfix]
     static void HideHpOnBar(NHealthBar __instance) {
-        if (ModInitializer.Config.PlayerHp) {
-            if (__instance._creature.IsPlayer || __instance._creature.IsPet) {
+        if (__instance._creature.IsPlayer || __instance._creature.IsPet) {
+            if (ModInitializer.Config.PlayerHp) {
+                __instance._hpLabel.Visible = false;
+            }
+        }
+        else {
+            if (ModInitializer.Config.EnemyHp) {
                 __instance._hpLabel.Visible = false;
             }
         }
