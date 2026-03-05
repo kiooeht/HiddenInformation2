@@ -52,4 +52,8 @@ public class Config {
     // Events
     [JsonPropertyName("event.option_effect")]
     public bool EventOptionEffect { get; set; }
+    
+    // Player
+    [JsonPropertyName("player.hp")]
+    public bool PlayerHp { get; set; }
 }
