@@ -102,22 +102,22 @@ static class HideCardInfo {
     [HarmonyPatch(typeof(CardModel), nameof(CardModel.PortraitBorderPath), MethodType.Getter)]
     [HarmonyTranspiler]
     static IEnumerable<CodeInstruction> HideTypeBorder(IEnumerable<CodeInstruction> instructions) {
-        return HideType("Failed to find card border string", instructions);
+        return HideType( instructions);
     }
 
     [HarmonyPatch(typeof(CardModel), nameof(CardModel.FramePath), MethodType.Getter)]
     [HarmonyTranspiler]
     static IEnumerable<CodeInstruction> HideTypeFrame(IEnumerable<CodeInstruction> instructions) {
-        return HideType("Failed to find card frame string", instructions);
+        return HideType( instructions);
     }
 
     [HarmonyPatch(typeof(CardModel), nameof(CardModel.AncientTextBgPath), MethodType.Getter)]
     [HarmonyTranspiler]
     static IEnumerable<CodeInstruction> HideTypeAncientTextBg(IEnumerable<CodeInstruction> instructions) {
-        return HideType("Failed to find card ancient text bg string", instructions);
+        return HideType(instructions);
     }
     
-    private static IEnumerable<CodeInstruction> HideType(string errorMsg, IEnumerable<CodeInstruction> instructions) {
+    private static IEnumerable<CodeInstruction> HideType(IEnumerable<CodeInstruction> instructions) {
         var codeMatcher = new CodeMatcher(instructions);
 
         codeMatcher
@@ -132,7 +132,7 @@ static class HideCardInfo {
             .MatchStartForward(
                 new CodeMatch(OpCodes.Ldloca_S)
             )
-            .ThrowIfInvalid(errorMsg)
+            .ThrowIfInvalid("Failed to find cardType ldloca.s")
             .InsertAndAdvance(
                 CodeInstruction.LoadLocal(index),
                 CodeInstruction.Call<CardType, CardType>(type => GetHiddenType(type)),
