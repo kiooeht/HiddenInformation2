@@ -63,4 +63,7 @@ public class Config {
     // Enemy
     [JsonPropertyName("enemy.hp")]
     public bool EnemyHp { get; set; }
+    
+    [JsonPropertyName("enemy.block")]
+    public bool EnemyBlock { get; set; }
 }

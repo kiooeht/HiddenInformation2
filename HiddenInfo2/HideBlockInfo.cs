@@ -11,5 +11,8 @@ static class HideBlockInfo {
         if (__instance._creature.IsPlayer || __instance._creature.IsPet) {
             __instance._blockLabel.Visible = !ModInitializer.Config.PlayerBlock;
         }
+        else {
+            __instance._blockLabel.Visible = !ModInitializer.Config.EnemyBlock;
+        }
     }
 }
